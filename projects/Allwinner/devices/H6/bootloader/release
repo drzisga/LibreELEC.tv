@@ -3,8 +3,7 @@
 
 mkdir -p $RELEASE_DIR/3rdparty/bootloader
   if [ -n "$UBOOT_SYSTEM" ]; then
-    cp -a $(get_build_dir $BOOTLOADER)/u-boot.itb $RELEASE_DIR/3rdparty/bootloader
-    cp -a $(get_build_dir $BOOTLOADER)/spl/sunxi-spl.bin $RELEASE_DIR/3rdparty/bootloader
+    cp -a $(get_build_dir $BOOTLOADER)/u-boot-sunxi-with-spl.bin $RELEASE_DIR/3rdparty/bootloader
   fi
 
   cp -a $(get_build_dir linux)/arch/$TARGET_KERNEL_ARCH/boot/dts/allwinner/sun50i-h6-*.dtb $RELEASE_DIR/3rdparty/bootloader
