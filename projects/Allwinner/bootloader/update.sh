@@ -1,6 +1,6 @@
 #!/bin/sh
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 [ -z "$SYSTEM_ROOT" ] && SYSTEM_ROOT=""
 [ -z "$BOOT_ROOT" ] && BOOT_ROOT="/flash"
@@ -29,16 +29,11 @@ fi
   done
 
 # update bootloader files
-  if [ -f $SYSTEM_ROOT/usr/share/bootloader/u-boot.itb ]; then
-    echo "*** updating U-Boot FIT image on: $BOOT_DISK ..."
-    dd if=$SYSTEM_ROOT/usr/share/bootloader/u-boot.itb of="$BOOT_DISK" bs=1K seek=40 conv=fsync &>/dev/null
-  fi
-
-  if [ -f $SYSTEM_ROOT/usr/share/bootloader/sunxi-spl.bin ]; then
-    echo "*** updating U-Boot SPL Blob on: $BOOT_DISK ..."
-    dd if=$SYSTEM_ROOT/usr/share/bootloader/sunxi-spl.bin of="$BOOT_DISK" bs=1k seek=8 conv=fsync &>/dev/null
+  if [ -f $SYSTEM_ROOT/usr/share/bootloader/u-boot-sunxi-with-spl.bin ]; then
+    echo "*** updating U-Boot on: $BOOT_DISK ..."
+    dd if=$SYSTEM_ROOT/usr/share/bootloader/u-boot-sunxi-with-spl.bin of="$BOOT_DISK" bs=1k seek=8 conv=fsync &>/dev/null
   fi
 
 # mount $BOOT_ROOT r/o
   sync
-mount -o remount,ro $BOOT_ROOT
+  mount -o remount,ro $BOOT_ROOT
