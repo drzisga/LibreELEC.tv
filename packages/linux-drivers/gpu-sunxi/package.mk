@@ -17,8 +17,8 @@ PKG_IS_KERNEL_PKG="yes"
 make_target() {
   kernel_make -C $(kernel_path) M=$PKG_BUILD/driver/src/devicedrv/mali/ \
     MALI_PLATFORM_FILES=platform/sunxi/sunxi.c \
-    EXTRA_CFLAGS="-DMALI_FAKE_PLATFORM_DEVICE=1 -DCONFIG_MALI_DMA_BUF_MAP_ON_ATTACH" \
-    CONFIG_MALI400=m
+    EXTRA_CFLAGS="-DCONFIG_MALI450 -DMALI_FAKE_PLATFORM_DEVICE=1 -DCONFIG_MALI_DMA_BUF_MAP_ON_ATTACH" \
+    CONFIG_MALI400=m CONFIG_MALI450=y
 }
 
 makeinstall_target() {
